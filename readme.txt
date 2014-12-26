@@ -25,7 +25,8 @@ Developed by the fine folks at [Loudlever](http://loudlever.com),
 
 **Install Plugin**
 
-* Download the zip file and save it in your `WordPress/wp-content/plugins` directory.
+* Download the zip file and save it in your `/wp-content/plugins` directory.
+* Unzip the file, then activate through the Plugins screen in the Admin tool.
 
 
 **Configure Plugin**

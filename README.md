@@ -17,13 +17,14 @@ This plugin organizes and formats your 'Posts' as required by Amazon for publish
 
 ###About Us
 
-Developed by the fine folks at [Loudlever](http://loudlever.com), 
+Developed by the fine folks at [Loudlever](http://loudlever.com).
 
 ###Installation
 
 **Install Plugin**
 
-* Download the zip file and save it in your `WordPress/wp-content/plugins` directory.
+* Download the zip file and save it in your `/wp-content/plugins` directory.
+* Unzip the file, then activate through the Plugins screen in the Admin tool.
 
 
 ###Frequently Asked Questions
