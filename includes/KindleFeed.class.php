@@ -110,9 +110,14 @@ class KindleFeed {
     if ($screen_id == $this->help) {
       $contextual_help = <<<EOF
 <h2>Overview</h2>      
-<p>This plugin will create a Feed of Scheduled Posts that you can send to Kindle prior to publication on your website.  Doing this will enable you to "pre-release" a version of your publication on Kindle before it goes live on your website.
+<p>This plugin organizes and formats your 'Posts' creating the input that Amazon requires for publishing via <a href='https://kindlepublishing.amazon.com/gp/vendor/kindlepubs/kpp/kpp-home' target=_blank>Kindle for Periodicals</a>.
 </p>
-<h3>Collect Posts for Next:</h3>
+<h2>Organize Categories by:</h2>
+<p>This controls how Categories should be listed in Kindle Table of Contents.  Currently only <b>Alphabetical</b> is supported.</p>
+<h2>URL of Cover Art:</h2>
+<p>Provide the URL of the cover art to be used.  This image <b>MUST</b> be exactly 800 pixels wide by 600 pixels in height.  The file must also be less than 1 MB in size.</p>
+
+<!--<h3>Collect Posts for Next:</h3>
 <p>This determines whether the plugin should be looking at next "Month" or next "Week" to find eligable content.  To be eligible for inclusion in the feed, the post must be "Scheduled" and have a date that occurs within the Next Period.</p>
 <h3>Update Kindle Feed:</h3>
 <p>This determines <i>when</i> the Kindle feed will be updated with the next batch of content.  You must ensure that all content to be included in the feed is "Scheduled" for publication by this date, otherwise the content will not be included when the feed is updated.</p>
@@ -123,7 +128,7 @@ class KindleFeed {
 <li>Collect Posts for Next:  <b>Month</b></li>
 <li>Update Kindle Feed: <b>2</b> <b>Weeks</b> prior to publication.</li>
 </ul>
-
+-->
 EOF;
     }
   	return $contextual_help;
@@ -142,7 +147,7 @@ EOF;
     
 ?>  
 <div class="wrap">
-  <h2>Kindle Feed Settings</h2>
+  <h2>Kindle Periodical Manager</h2>
 	<p>Need to know what these fields mean?  Simply click the "Help" link at the top of your screen.</p> 
 	  <form method="post" action="options.php">
     <?php settings_fields( $this->config_key ); ?>
@@ -165,7 +170,7 @@ EOF;
         <th scope="row">URL of Cover Art:</th>
         <td>
           <input type='text' name="kindle[cover_art_url]" value='<?php echo $opts['cover_art_url']; ?>'>
-          <small>(image must have dimensions of 800x600 and be < 1Mb in size)</small>
+          <small>(image must have dimensions exactly <b>800x600</b> and be < 1Mb in size)</small>
         </td>
       </tr>
 <?php
@@ -174,9 +179,19 @@ EOF;
 ?>
 	<tr valign="top">
     <th scope="row">Cover Art Preview:</th>
-    <td>Please verify that this is the image you want to use with Kindle Publishing.<br/>
-    It has been reduced from it's original size for display purposes.<br/>
-      <img width='400' src='<?php echo $opts['cover_art_url']; ?>' alt='cover art'>
+    <td><p>Please verify that this is the image you want to use with Kindle Publishing.<br/>
+    It has been reduced from it's original size for display purposes.</p>
+      <p><img width='400' src='<?php echo $opts['cover_art_url']; ?>' alt='cover art'></p>
+    </td>
+  </tr>
+	<tr valign="top">
+    <th scope="row">Kindle XML URL:</th>
+    <td><p>When prompted by Amazon Kindle for the URL of your XML feed, use this:</p>
+      <p>
+        <code>
+          <?php _e(sprintf('%s/kindle_manifest',site_url())); ?>
+        </code>
+      </p>
     </td>
   </tr>
 <?php
@@ -231,6 +246,14 @@ EOF;
     
   }
   
+	/**
+	* Ensure rewrite rules are flushed
+	*/
+	public function activate_plugin() {
+	  global $wp_rewrite;
+	  $wp_rewrite->flush_rules( true );
+	  return;
+	}
 	/**
 	* Ensure our configuration gets cleaned out if this plugin is uninstalled
 	*/

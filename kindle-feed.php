@@ -2,14 +2,12 @@
 /*
 Plugin Name: Kindle Periodical Manager
 Plugin URI: http://www.loudlever.com/wordpress-plugins/kindle-periodical-manager/
-Description: This plugin creates the XML feed of 'Posts' that Amazon requires for publication on <a href='https://kindlepublishing.amazon.com/gp/vendor/kindlepubs/kpp/kpp-home' target='_blank'>Kindle for Periodicals</a>.
-Version: 0.1.2
-Author: Loudlever, Inc.
+Description: Organize and format your 'Posts' as required by Amazon for <a href='https://kindlepublishing.amazon.com/gp/vendor/kindlepubs/kpp/kpp-home' target='_blank'>Kindle for Periodicals</a>.
+Version: 1.0.0
+Author: Loudlever
 Author URI: http://www.loudlever.com
 
-  $Id: kindle-feed.php 52 2011-12-06 00:38:48Z rluck $
-
-  Copyright 2010-2011 Loudlever, Inc. (wordpress@loudlever.com)
+  Copyright 2010-2015 Loudlever, Inc. (wordpress@loudlever.com)
 
   Permission is hereby granted, free of charge, to any person
   obtaining a copy of this software and associated documentation
@@ -61,12 +59,13 @@ function kindle_feed_rules() {
 	add_feed('kindle_cover', array(&$kf,'format_cover'));
 	add_feed('kindle_cover_details', array(&$kf,'format_cover_details'));
 	add_feed('kindle_masthead', array(&$kf,'format_masthead'));
+	
 }
 function kindle_admin_settings() {
   global $kf;
  	//create Options Management Screen
 	if (function_exists('add_options_page')) {
-		$kf->help = add_options_page('Kindle Feed Settings','Kindle Feed', 'administrator', $kf->slug, 'kindle_settings_page');
+		$kf->help = add_options_page('Kindle Settings','Kindle Settings', 'administrator', $kf->slug, 'kindle_settings_page');
   }
   if (function_exists('add_action')) {
   	add_action( 'admin_init', array(&$kf,'register_options') );
@@ -79,8 +78,8 @@ function kindle_settings_page() {
   $kf->configuration_screen();
 }
 
+register_activation_hook( __FILE__, array(&$kf,'activate_plugin'));
 register_deactivation_hook( __FILE__, array(&$kf,'deactivate_plugin'));
-
 
 // outputs SQL queries to a log
 // add_action('shutdown', 'sql_logger');

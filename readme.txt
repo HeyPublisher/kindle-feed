@@ -3,24 +3,23 @@ Contributors: Loudlever.
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6XSRBYF4B3RH6
 Tags: kindle, ebook, periodical, publisher, magazine, electronic, amazon
 Requires at least: 3.2.0
-Tested up to: 3.2.0
-Stable Tag: 0.1.2
+Tested up to: 4.1.0
+Stable Tag: 1.0.0
+License          : GPLv2 or later
+License URI      : http://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin will create a feed of 'Posts that can be sent to Amazon for publication on [Kindle for Periodicals](https://kindlepublishing.amazon.com/gp/vendor/kindlepubs/kpp/kpp-home).
+This plugin organizes and formats your 'Posts' as required by Amazon for publishing via [Kindle for Periodicals](https://kindlepublishing.amazon.com/gp/vendor/kindlepubs/kpp/kpp-home).
 
 == Description ==
 
 **About Kindle Periodical Manager**
 
-
-**How it Works**
-
+* You need to first install this plugin and configure.
+* Then create a [Kindle for Periodicals](https://kindlepublishing.amazon.com/gp/vendor/kindlepubs/kpp/kpp-home) account.  
 
 == About Us ==
 
-Developed by the fine folks at [Loudlever, Inc.](http://loudlever.com), 
-
-We are Loudlever.  Creativity.  Accelerated.
+Developed by the fine folks at [Loudlever](http://loudlever.com), 
 
 == Installation ==
 
@@ -29,21 +28,31 @@ We are Loudlever.  Creativity.  Accelerated.
 * Download the zip file and save it in your `WordPress/wp-content/plugins` directory.
 
 
-
 **Configure Plugin**
 
 
 == Frequently Asked Questions ==
 
-If you have any questions not addressed here, [please email us](mailto:wordpress@loudlever.com?subject=Question+about+plugin).
-
+If you have any questions not addressed here, [please email us](mailto:wordpress@loudlever.com?subject=Question+about+Kindle+plugin).
 
 == Screenshots ==
 
 1. 
-2. 
 
 == Changelog ==
+
+= 1.0.0 =
+
+* Ensuring 4.x WP compatibility
+* Upgraded to ensure that social sharing plugins do not break feed to Amazon.
+
+= 0.1.2 =
+
+* More bug fixes related to other plugins inserting iframes into the content of the posts, which Kindle does not like.
+
+= 0.1.1 =
+
+* Bug fixes
 
 = 0.1.0 =
 
@@ -51,6 +60,11 @@ If you have any questions not addressed here, [please email us](mailto:wordpress
 
 
 == Upgrade Notice ==
+
+= 1.0.0 = 
+
+* All users should update, as this update fixes several problems associated with other plugins inserting content into POSTs that is not supported by Amazon.
+* Released : 2014-12-26
 
 = 0.1.0 = 
 
