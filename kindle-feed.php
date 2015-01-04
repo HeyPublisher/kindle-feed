@@ -42,8 +42,6 @@ if ( !function_exists( 'add_action' ) ) {
 load_template(dirname(__FILE__) . '/includes/KindleFeed.class.php');
 $kf = new KindleFeed();
 
-
-
 // enable our link to the settings
 add_filter('plugin_action_links', array(&$kf,'plugin_links'), 10, 2 );
 add_action('init', 'kindle_feed_rules');
