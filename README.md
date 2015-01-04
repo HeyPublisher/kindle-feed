@@ -15,10 +15,6 @@ This plugin organizes and formats your 'Posts' as required by Amazon for publish
 * You need to first install this plugin and configure.
 * Then create a [Kindle for Periodicals](https://kindlepublishing.amazon.com/gp/vendor/kindlepubs/kpp/kpp-home) account.  
 
-###About Us
-
-Developed by the fine folks at [Loudlever](http://loudlever.com).
-
 ###Installation
 
 **Install Plugin**

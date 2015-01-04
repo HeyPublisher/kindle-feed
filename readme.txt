@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: Loudlever. 
+Contributors: loudlever. 
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6XSRBYF4B3RH6
 Tags: kindle, ebook, periodical, publisher, magazine, electronic, amazon
 Requires at least: 3.2.0
@@ -16,10 +16,6 @@ This plugin organizes and formats your 'Posts' as required by Amazon for publish
 
 * You need to first install this plugin and configure.
 * Then create a [Kindle for Periodicals](https://kindlepublishing.amazon.com/gp/vendor/kindlepubs/kpp/kpp-home) account.  
-
-== About Us ==
-
-Developed by the fine folks at [Loudlever](http://loudlever.com), 
 
 == Installation ==
 
