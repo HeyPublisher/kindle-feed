@@ -7,6 +7,12 @@
 
 // The class with set options should already be loaded.
 global $kf, $post, $cons_shareFollow;
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('wp_print_styles', 'print_emoji_styles');
+
+remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+remove_action( 'admin_print_styles', 'print_emoji_styles' );
+
 // dump the Share and Follow junk, if present.
 if ($cons_shareFollow) {
 	remove_filter('the_content', array(&$cons_shareFollow, 'addContent'));

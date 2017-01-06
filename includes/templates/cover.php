@@ -14,7 +14,7 @@ echo '<?xml version="1.0" encoding="'.get_option('blog_charset').'"?'.'>'; ?>
 <channel>
 	<title>Cover</title>
   <item>
-    <link><?php printf("%s/kindle_cover_details", site_url()); ?></link>
+    <link><?php printf("%s/?feed=kindle_cover_details", site_url()); ?></link>
   </item>
 </channel>
 </rss>
