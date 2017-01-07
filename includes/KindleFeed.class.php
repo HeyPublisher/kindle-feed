@@ -370,9 +370,10 @@ EOF;
 
   // Need to fix places where HTML and XHTML don't match
   // Thoughts from: http://syrkos.com/blog/2013/04/25/make-html-xhtml-compliant-without-tidy/
+  // Helper: http://regexr.com/
   public function fix_bad_xml($xml) {
-    $xml = preg_replace("/<img([^>]+)\>/i", "<img $1/>", $xml);
-    $xml = preg_replace("/<hr([^>]*)\>/i", "<hr $1/>", $xml);
+    $xml = preg_replace("/<img([^>\/]+)\>/i", "<img $1/>", $xml);
+    $xml = preg_replace("/<hr([^>\/]*)\>/i", "<hr $1/>", $xml);
     $replace = ['&nbsp;' => ''];
     $xml = strtr($xml, $replace);
     return $xml;

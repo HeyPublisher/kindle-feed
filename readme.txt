@@ -38,7 +38,12 @@ If you have any questions not addressed here, [please email us](mailto:wordpress
 
 == Changelog ==
 
+= 1.1.1 =
+
+* Really fixed the problem this time.
+
 = 1.1.0 =
+
 * Fixed problem with WordPress creating <img> and <hr> tags that are not XHTML compliant.
 
 = 1.0.0 =

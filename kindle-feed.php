@@ -3,7 +3,7 @@
 Plugin Name: Kindle Periodical Manager
 Plugin URI: http://www.loudlever.com/wordpress-plugins/kindle-periodical-manager/
 Description: Organize and format your 'Posts' as required by Amazon for <a href='https://kindlepublishing.amazon.com/gp/vendor/kindlepubs/kpp/kpp-home' target='_blank'>Kindle for Periodicals</a>.
-Version: 1.1.0
+Version: 1.1.1
 Author: Loudlever
 Author URI: http://www.loudlever.com
 
