@@ -372,7 +372,9 @@ EOF;
   // Thoughts from: http://syrkos.com/blog/2013/04/25/make-html-xhtml-compliant-without-tidy/
   // Helper: http://regexr.com/
   public function fix_bad_xml($xml) {
-    $xml = preg_replace("/<img([^>\/]+)\>/i", "<img $1/>", $xml);
+    // TODO: Need to get this to ignore tags that have the end and add to those that don't
+    // @link: http://stackoverflow.com/questions/8906503/preg-replace-to-put-forward-slash-in-img-tag
+    $xml = preg_replace("/<img([^>]+)(?<!\/)\>/is", "<img $1 />", $xml);
     $xml = preg_replace("/<hr([^>\/]*)\>/i", "<hr $1/>", $xml);
     $replace = ['&nbsp;' => ''];
     $xml = strtr($xml, $replace);

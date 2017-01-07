@@ -1,6 +1,10 @@
 ###Changelog
 
 
+####1.1.2
+
+* Really, REALLY fixed the problem this time.
+
 ####1.1.1
 
 * Really fixed the problem this time.
