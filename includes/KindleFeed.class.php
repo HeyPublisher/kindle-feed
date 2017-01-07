@@ -31,19 +31,19 @@ class KindleFeed {
 	  // initialize the dates
 	  $this->options = get_option($this->opt_key);
     $this->date_range_for_feed();
-  }   
+  }
 
   public function __destruct() {
     // force save of options to db
     // This is throwing a cache error
     // update_option($this->opt_key,$this->options);
   }
-  
+
   public function register_options() {
     // configs that are editable by user
     register_setting( $this->config_key, $this->config_val );
   }
-  
+
   public function plugin_links($links, $file) {
     if ($file == $this->plugin_file) {
       $settings_link = '<a href="options-general.php?page='.$this->slug.'">'.__("Settings", "kindle-feed").'</a>';
@@ -89,7 +89,7 @@ class KindleFeed {
 	}
 	// dynamically create the masthead layout
 	public function format_masthead() {
-		
+
 	}
   // The entry point manifest format.  This is the primary entry point for the primary manifest
   public function format_manifest() {
@@ -104,12 +104,12 @@ class KindleFeed {
   public function format_article() {
    load_template(dirname(__FILE__) . '/templates/article.php');
   }
-  
+
 	// Contextual Help for the Plugin Configuration Screen
   public function configuration_screen_help($contextual_help, $screen_id, $screen) {
     if ($screen_id == $this->help) {
       $contextual_help = <<<EOF
-<h2>Overview</h2>      
+<h2>Overview</h2>
 <p>This plugin organizes and formats your 'Posts' creating the input that Amazon requires for publishing via <a href='https://kindlepublishing.amazon.com/gp/vendor/kindlepubs/kpp/kpp-home' target=_blank>Kindle for Periodicals</a>.
 </p>
 <h2>Organize Categories by:</h2>
@@ -133,7 +133,7 @@ EOF;
     }
   	return $contextual_help;
   }
-  
+
   // Display the Plugin Configuration Screen
 	// v.1 will display minimal info
 	// v.2 will display configurations for future dates
@@ -144,21 +144,21 @@ EOF;
 		// Not currently in use
     // $periods = array('month');
     // $days = range(1,5);
-    
-?>  
+
+?>
 <div class="wrap">
   <h2>Kindle Periodical Manager</h2>
-	<p>Need to know what these fields mean?  Simply click the "Help" link at the top of your screen.</p> 
+	<p>Need to know what these fields mean?  Simply click the "Help" link at the top of your screen.</p>
 	  <form method="post" action="options.php">
     <?php settings_fields( $this->config_key ); ?>
     <?php $opts = get_option( $this->config_val ); ?>
-    
+
     <table class="form-table">
 			<tr valign="top">
         <th scope="row">Organize Categories by:</th>
         <td>
           <select name="kindle[category_order]">
-        <?php 
+        <?php
           foreach ($cat_order as $val) {
             echo $this->build_option_string($val,$opts['category_order']);
           }
@@ -205,7 +205,7 @@ EOF;
         <th scope="row">Collect Posts for Next:</th>
         <td>
           <select name="kindle_feed_next_period">
-        <?php 
+        <?php
           foreach ($periods as $val) {
             echo $this->build_option_string($val,$opts['kindle_feed_next_period']);
           }
@@ -241,11 +241,11 @@ EOF;
       <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
     </p>
   </form>
-</div>  
-<?php  
-    
+</div>
+<?php
+
   }
-  
+
 	/**
 	* Ensure rewrite rules are flushed
 	*/
@@ -271,19 +271,19 @@ EOF;
     );
     return $string;
   }
-  
+
   /**
   * Get the valid date ranges for this feed's content, based upon the plugin configuration.
   */
   private function date_range_for_feed() {
-	
+
 		// For pulling ALL content from current month/year
     $today = date('Y-m-d',time());
 		$this_build_month = sprintf("%s-01",date('Y-m', strtotime($today)));
 
 		$this->options['static']['live'] = true;
 		$this->options['static']['build_period'] = $this_build_month;
-    $this->options['static']['published'] = date(DATE_ATOM, mktime(0, 0, 0, date('n'), 1)); 
+    $this->options['static']['published'] = date(DATE_ATOM, mktime(0, 0, 0, date('n'), 1));
 		$this->options['static']['pub'] = date('F, Y', strtotime($today));
 		$this->options['static']['month'] = date('n', strtotime($today));
 		$this->options['static']['year'] = date('Y', strtotime($today));
@@ -293,20 +293,20 @@ EOF;
 		//     $this->feed = get_option($this->feed_key);
 		// $this->feed[live] = false;
 		// $last_build_month = $this->feed[build_period];
-		// 
+		//
 		//     $today = date('Y-m-d',time());
 		//     $next_period = (FALSE != $opts[kindle_feed_next_period]) ? $opts[kindle_feed_next_period] : 'month';
 		//     $pre_number = (FALSE != $opts[kindle_feed_pre_number]) ? $opts[kindle_feed_pre_number] : '1';
 		//     $pre_period = (FALSE != $opts[kindle_feed_pre_period]) ? $opts[kindle_feed_pre_period] : 'week';
-		// 
+		//
 		//     $next_month = date('Y-m-d', strtotime("+1 $next_period", strtotime($today)));
 		//     $build = date('Y-m-d', strtotime("-$pre_number $pre_period", strtotime($next_month)));
 		//     // printf("build = %s\nnext_month = %s\ntoday = %s\n",$build,$next_month,$today);
 		//     // printf("feed = %s\n",print_r($this->feed,1));
 		//     if (date('n') == 12) {
-		//       $this->feed[published] = date(DATE_ATOM, mktime(0, 0, 0, 0, 0, date('Y')+1)); 
+		//       $this->feed[published] = date(DATE_ATOM, mktime(0, 0, 0, 0, 0, date('Y')+1));
 		//     } else {
-		//       $this->feed[published] = date(DATE_ATOM, mktime(0, 0, 0, date('n')+1, 1)); 
+		//       $this->feed[published] = date(DATE_ATOM, mktime(0, 0, 0, date('n')+1, 1));
 		//     }
 		// $this_build_month = sprintf("%s-01",date('Y-m', strtotime("+1 $next_period", strtotime($today))));
 		// // only update if we're within the build period AND we haven't built already
@@ -335,31 +335,32 @@ EOF;
 
 		// strip collector
 		$strip_arr = array();
+    $data_str = $this->fix_bad_xml($data_str);
     $data_str = $this->_translateLiteral2NumericEntities($data_str);
     $data_sxml = simplexml_load_string($header.'<root>'. $data_str .'</root>', 'SimpleXMLElement');
     if ($data_sxml ) {
-        // loop all elements with an attribute
-        foreach ($data_sxml->xpath('descendant::*[@*]') as $tag) {
-            // loop attributes
-            foreach ($tag->attributes() as $name=>$value) {
-                // check for allowable attributes
-                if (!in_array($name, $allowable_atts)) {
-                    // set attribute value to empty string
-                    $tag->attributes()->$name = '';
-                    // collect attribute patterns to be stripped
-                    $strip_arr[$name] = '/ '. $name .'=""/';
-                }
-            }
-        }
-    } else {
-          // We encountered XML errors.
-          $errors = array();
-          foreach(libxml_get_errors() as $error) {
-            // $errors[] = $error;
+      // loop all elements with an attribute
+      foreach ($data_sxml->xpath('descendant::*[@*]') as $tag) {
+        // loop attributes
+        foreach ($tag->attributes() as $name=>$value) {
+          // check for allowable attributes
+          if (!in_array($name, $allowable_atts)) {
+            // set attribute value to empty string
+            $tag->attributes()->$name = '';
+            // collect attribute patterns to be stripped
+            $strip_arr[$name] = '/ '. $name .'=""/';
           }
-          printf("<pre>XML Errors:\n%s</pre>",print_r(libxml_get_errors(),1));
         }
-		
+      }
+    } else {
+      // We encountered XML errors.
+      $errors = array();
+      foreach(libxml_get_errors() as $error) {
+        $errors[] = $error->message;
+      }
+      printf("<pre>XML Errors:\n%s</pre>",print_r($errors,1));
+    }
+
 		// ALL <p> tags must be <p align='left'>
 		// All <strong> must be <b>; all <em> must be <i>
 		// strip unallowed attributes and root tag
@@ -367,11 +368,20 @@ EOF;
     return $data_str;
 	}
 
-  // Helper code from https://bugs.php.net/bug.php?id=15092
-  // This ensures that junk lik &nbsp; gets converted to XML-safe entities
-  public function _translateLiteral2NumericEntities($xmlSource, $reverse = FALSE) {
-    static $literal2NumericEntity;
+  // Need to fix places where HTML and XHTML don't match
+  // Thoughts from: http://syrkos.com/blog/2013/04/25/make-html-xhtml-compliant-without-tidy/
+  public function fix_bad_xml($xml) {
+    $xml = preg_replace("/<img([^>]+)\>/i", "<img $1/>", $xml);
+    $xml = preg_replace("/<hr([^>]*)\>/i", "<hr $1/>", $xml);
+    $replace = ['&nbsp;' => ''];
+    $xml = strtr($xml, $replace);
+    return $xml;
+  }
 
+  // Helper code from https://bugs.php.net/bug.php?id=15092
+  // This ensures that junk like &nbsp; gets converted to XML-safe entities
+  public function _translateLiteral2NumericEntities($xmlSource) {
+    static $literal2NumericEntity;
     if (empty($literal2NumericEntity)) {
       $transTbl = get_html_translation_table(HTML_ENTITIES);
       foreach ($transTbl as $char => $entity) {
@@ -379,13 +389,7 @@ EOF;
         $literal2NumericEntity[$entity] = '&#'.ord($char).';';
       }
     }
-    if ($reverse) {
-      return strtr($xmlSource, array_flip($literal2NumericEntity));
-    } else {
-      return strtr($xmlSource, $literal2NumericEntity);
-    }
-  }	
-	
+    return strtr($xmlSource, $literal2NumericEntity);
+  }
 }
-
 ?>

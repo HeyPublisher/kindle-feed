@@ -1,10 +1,10 @@
 === Plugin Name ===
-Contributors: loudlever. 
+Contributors: loudlever.
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6XSRBYF4B3RH6
 Tags: kindle, ebook, periodical, publisher, magazine, electronic, amazon
 Requires at least: 3.2.0
 Tested up to: 4.1.0
-Stable Tag: 1.0.0
+Stable Tag: 1.1.0
 License          : GPLv2 or later
 License URI      : http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ This plugin organizes and formats your 'Posts' as required by Amazon for publish
 **About Kindle Periodical Manager**
 
 * You need to first install this plugin and configure.
-* Then create a [Kindle for Periodicals](https://kindlepublishing.amazon.com/gp/vendor/kindlepubs/kpp/kpp-home) account.  
+* Then create a [Kindle for Periodicals](https://kindlepublishing.amazon.com/gp/vendor/kindlepubs/kpp/kpp-home) account.
 
 == Installation ==
 
@@ -34,9 +34,12 @@ If you have any questions not addressed here, [please email us](mailto:wordpress
 
 == Screenshots ==
 
-1. 
+1.
 
 == Changelog ==
+
+= 1.1.0 =
+* Fixed problem with WordPress creating <img> and <hr> tags that are not XHTML compliant.
 
 = 1.0.0 =
 
@@ -58,13 +61,16 @@ If you have any questions not addressed here, [please email us](mailto:wordpress
 
 == Upgrade Notice ==
 
-= 1.0.0 = 
+= 1.1.0 =
+
+* Increased stability
+* Released : 2017-01-06
+
+= 1.0.0 =
 
 * All users should update, as this update fixes several problems associated with other plugins inserting content into POSTs that is not supported by Amazon.
 * Released : 2014-12-26
 
-= 0.1.0 = 
+= 0.1.0 =
 
 * Released : 2011-12-01
-
-
