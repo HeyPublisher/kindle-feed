@@ -59,6 +59,8 @@ class KindleFeed {
 
 	/**
 	* Input an array of overrides for the query
+  *
+  * This will pull "current" content based upon year/month attribute, just like website
 	*/
   public function query_string_for_posts($custom=array()) {
 		// Date Range Params
@@ -329,7 +331,7 @@ EOF;
 	// Format the content according to Kindle publishing rules.
 	public function strip_content($data_str) {
 		// define allowable tags
-		$allowable_tags = '<p><a><strong><em><img><ul><ol><li><table><thead><tbody><tr><th><td>';
+		$allowable_tags = '<p><a><strong><em><img><ul><ol><li><table><thead><tbody><tr><th><td><br>';
 		// define allowable attributes
 		$allowable_atts = array('src','href');
 
