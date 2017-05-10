@@ -1,10 +1,9 @@
 === Plugin Name ===
-Contributors: loudlever.
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=6XSRBYF4B3RH6
+Contributors: heypublisher, aguywithanidea
 Tags: kindle, ebook, periodical, publisher, magazine, electronic, amazon
 Requires at least: 3.2.0
-Tested up to: 4.1.0
-Stable Tag: 1.1.2
+Tested up to: 4.7.3
+Stable Tag: 1.2.0
 License          : GPLv2 or later
 License URI      : http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -38,6 +37,11 @@ If you have any questions not addressed here, [please email us](mailto:wordpress
 
 == Changelog ==
 
+= 1.2.0 =
+
+* Fixed formatting issues with Poetry
+* Added separator and identifying header to the author bio, when present.
+
 = 1.1.2 =
 
 * Really, REALLY fixed the problem this time.
@@ -66,20 +70,3 @@ If you have any questions not addressed here, [please email us](mailto:wordpress
 = 0.1.0 =
 
 * Initial Release.
-
-
-== Upgrade Notice ==
-
-= 1.1.0 =
-
-* Increased stability
-* Released : 2017-01-06
-
-= 1.0.0 =
-
-* All users should update, as this update fixes several problems associated with other plugins inserting content into POSTs that is not supported by Amazon.
-* Released : 2014-12-26
-
-= 0.1.0 =
-
-* Released : 2011-12-01

@@ -19,31 +19,47 @@ if ($cons_shareFollow) {
 query_posts( $kf->query_string_for_posts(array('p'=> $post->ID )));
 while( have_posts()) : the_post();
 	$post = get_post(get_the_ID(), OBJECT);
+  $cats = get_the_category();
+  $cat = $cats[0]->slug; // we only care about first one.
 	$charset = 'UTF-8'; // Force this
-	header('Content-Type: ' . feed_content_type('rss-http') . '; charset=' . $charset, true);
-	echo '<?xml version="1.0" encoding="'.$charset.'"?'.'>';
-?>
+  $title = get_the_title();
+  $abstract = ''; //$kf->strip_excerpt(get_the_excerpt());
+  $author = get_the_author();
+  $bio = get_the_author_meta('description');
+  $authorbio = '';
+  if ($bio !== '') {
+    $authorbio = <<<EOF
+    <hr/>
+    <h3>About {$author}:</h3>
+    <p align="left" width="0">{$bio}</p>
+EOF;
+  }
 
-<html>
-	<head>
-		<title><?php the_title(); ?></title>
-		<meta name="abstract" content="<?php echo ''
-		/* don't want this right now as it messes up display
-		  $kf->strip_excerpt(get_the_excerpt());
-		*/ ?>"/>
-		<meta name="author" content="by <?php the_author(); ?>"/>
-		<meta name="dc.date.issued" content="<?php the_date('Ymd'); ?>"/>
-	</head>
-	<body>
-<?php
+  $pubdate = get_the_date('Ymd');
   $content = get_the_content_feed();
-	print $kf->strip_content($content);
-	// Add the author bio
-	print '<br/>';
-	printf('<p align="left" width="0">%s</p>', get_the_author_meta('description'));
-?>
+  $content = $kf->strip_content($content);
+  $pre = '';
+  // TODO: hack alert - this should be pulled from configuration
+  if ($cat == 'poetry') {
+    $pre = '<p/>'; // this ensures first stanza is not left align by default.
+  }
+  $html = <<<EOF
+<?xml version="1.0" encoding="{$charset}"?>
+<html>
+  <head>
+    <title>{$title}</title>
+    <meta name="abstract" content="{$abstract}"/>
+    <meta name="author" content="by {$author}"/>
+    <meta name="dc.date.issued" content="{$pubdate}"/>
+  </head>
+  <body>
+    {$pre}
+    {$content}
+    {$authorbio}
 	</body>
 </html>
-<?php
+EOF;
+  header('Content-Type: ' . feed_content_type('rss-http') . '; charset=' . $charset, true);
+  echo $html;
 endwhile;
 ?>
