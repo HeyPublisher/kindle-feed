@@ -27,3 +27,15 @@ This plugin organizes and formats your 'Posts' as required by Amazon for publish
 + [Kindle For Periodicals Publishing Guidelines](https://images-na.ssl-images-amazon.com/images/G/01/kindle-publication/feedGuide-new/KPPUserGuide._V394577284_.html#FeedRequirements)
 
 If you have any questions not addressed here, [please email us](mailto:wordpress@heypublisher.com?subject=Question+About+Kindle+Plugin).
+
+### Contributing
++ Fork the repo
++ Make your contribution
++ Submit a pull request
+
+### Development
+The script `package.sh` is included to help you package up the code for deployment to your own WordPress installation.  To execute, simply run the script:
+```bash
+./package.sh
+```
+and provide a version number to be used when creating the tarball for distribution
